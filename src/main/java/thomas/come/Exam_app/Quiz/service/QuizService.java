@@ -39,8 +39,6 @@ public class QuizService {
         quiz.setTitle(quizDetails.getTitle());
         quiz.setDescription(quizDetails.getDescription());
         quiz.setTimeLimitMinutes(quizDetails.getTimeLimitMinutes());
-        // For simplicity, we just save the basic details. 
-        // Updating questions might need more complex logic (syncing lists).
         return quizRepository.save(quiz);
     }
 

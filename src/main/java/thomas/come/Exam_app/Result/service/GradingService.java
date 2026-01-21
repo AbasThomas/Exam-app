@@ -31,14 +31,12 @@ public class GradingService {
         
         int score = 0;
         
-        // Map questions for quick lookup
         Map<Long, Question> questionMap = quiz.getQuestions().stream()
                 .collect(Collectors.toMap(Question::getId, Function.identity()));
 
         for (AnswerSubmissionDTO answer : submission.getAnswers()) {
             Question question = questionMap.get(answer.getQuestionId());
             if (question != null) {
-                // Check if the selected option is correct for this question
                 Option selectedOption = optionRepository.findById(answer.getSelectedOptionId())
                         .orElse(null);
                 
