@@ -56,7 +56,7 @@ export default function Home() {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="relative z-10 py-20 px-4 bg-black">
+      <section id="how-it-works" className="relative z-10 py-20 px-4">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-12">Simple Steps to Success</h2>
           <div className="flex flex-col md:flex-row justify-center items-center gap-8">
@@ -140,7 +140,7 @@ function FeatureCard({ icon, title, description }: { icon: React.ReactNode, titl
 function StepCard({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) {
   return (
     <div className="flex flex-col items-center max-w-xs">
-      <div className="p-6 bg-primary/10 rounded-full mb-4 text-primary">{icon}</div>
+      <div className="p-6 bg-white/5 rounded-full mb-4 text-white">{icon}</div>
       <h3 className="text-2xl font-bold mb-2">{title}</h3>
       <p className="text-slate-400">{description}</p>
     </div>
@@ -148,14 +148,14 @@ function StepCard({ icon, title, description }: { icon: React.ReactNode, title: 
 }
 
 function StepArrow() {
-  return <ArrowRight className="w-12 h-12 text-slate-700 hidden md:block" />;
+  return <ArrowRight className="w-12 h-12 text-slate-500 hidden md:block" />;
 }
 
 function TestimonialCard({ text, author }: { text: string, author: string }) {
   return (
     <div className="p-8 text-left rounded-2xl glass">
       <p className="text-lg text-slate-300 mb-4">"{text}"</p>
-      <p className="font-bold text-primary">{author}</p>
+      <p className="font-bold text-white">{author}</p>
     </div>
   );
 }

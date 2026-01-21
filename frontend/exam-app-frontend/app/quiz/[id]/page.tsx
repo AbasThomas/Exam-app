@@ -59,7 +59,7 @@ export default function TakeQuizPage() {
     const percentage = Math.round((result.score / quiz.questions.length) * 100);
     return (
       <div className="min-h-screen flex items-center justify-center p-6">
-        <div className="max-w-xl w-full glass-morphism p-12 text-center animate-float">
+        <div className="max-w-xl w-full glass p-12 text-center animate-float">
           <div className="w-24 h-24 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-8 border border-green-500/50">
             <svg className="w-12 h-12 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
@@ -73,7 +73,7 @@ export default function TakeQuizPage() {
               <circle cx="96" cy="96" r="88" stroke="currentColor" strokeWidth="12" fill="transparent" className="text-white/5" />
               <circle cx="96" cy="96" r="88" stroke="currentColor" strokeWidth="12" fill="transparent" 
                 strokeDasharray={552} strokeDashoffset={552 - (552 * percentage) / 100}
-                className="text-[var(--primary)] transition-all duration-1000 ease-out" />
+                className="text-white transition-all duration-1000 ease-out" />
             </svg>
             <div className="absolute text-center">
               <span className="text-5xl font-black text-white">{percentage}%</span>
@@ -83,9 +83,9 @@ export default function TakeQuizPage() {
 
           <div className="flex flex-col gap-4">
             <div className="text-slate-400 font-medium text-center">
-              You correctly answered <span className="text-[var(--primary)] font-bold">{result.score}</span> out of {quiz.questions.length} questions.
+              You correctly answered <span className="text-white font-bold">{result.score}</span> out of {quiz.questions.length} questions.
             </div>
-            <button onClick={() => router.push('/quiz')} className="btn-premium mt-4">
+            <button onClick={() => router.push('/quiz')} className="btn-primary mt-4">
               Return to Catalog
             </button>
           </div>
@@ -119,10 +119,10 @@ export default function TakeQuizPage() {
                     <span>{progress}%</span>
                 </div>
                 <div className="w-40 h-1.5 bg-white/5 rounded-full overflow-hidden">
-                    <div className="h-full bg-[var(--primary)] transition-all duration-500" style={{ width: `${progress}%` }} />
+                    <div className="h-full bg-white transition-all duration-500" style={{ width: `${progress}%` }} />
                 </div>
             </div>
-            <button onClick={handleSubmit} className="btn-premium py-2 px-6 text-sm">Submit</button>
+            <button onClick={handleSubmit} className="btn-primary py-2 px-6 text-sm">Submit</button>
         </div>
       </div>
 
@@ -146,12 +146,12 @@ export default function TakeQuizPage() {
                         onClick={() => handleOptionSelect(question.id, option.id)}
                         className={`group flex items-center p-6 rounded-2xl border transition-all duration-200 text-left ${
                           answers[question.id] === option.id
-                            ? 'bg-[color:rgb(56_189_248_/_0.10)] border-[var(--primary)] text-white'
+                            ? 'bg-white/10 border-white text-white'
                             : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10 hover:border-white/20'
                         }`}
                       >
                         <div className={`w-6 h-6 rounded-full border-2 mr-6 flex items-center justify-center transition-colors ${
-                          answers[question.id] === option.id ? 'bg-[var(--primary)] border-[var(--primary)]' : 'border-white/20'
+                          answers[question.id] === option.id ? 'bg-white border-white' : 'border-white/20'
                         }`}>
                           {answers[question.id] === option.id && <div className="w-2 h-2 bg-white rounded-full" />}
                         </div>
@@ -172,12 +172,12 @@ export default function TakeQuizPage() {
                     {currentQuestionIdx < quiz.questions.length - 1 ? (
                       <button 
                         onClick={() => setCurrentQuestionIdx(currentQuestionIdx + 1)}
-                        className="btn-premium"
+                        className="btn-primary"
                       >
                         Next Question
                       </button>
                     ) : (
-                      <button onClick={handleSubmit} className="btn-premium bg-gradient-to-r from-green-500 to-emerald-600">
+                      <button onClick={handleSubmit} className="btn-primary">
                         Finish Assessment
                       </button>
                     )}
@@ -196,7 +196,7 @@ export default function TakeQuizPage() {
                   key={q.id}
                   onClick={() => setCurrentQuestionIdx(i)}
                   className={`w-full aspect-square rounded-lg flex items-center justify-center text-xs font-bold transition-all ${
-                    currentQuestionIdx === i ? 'bg-(--primary) text-white' : 
+                    currentQuestionIdx === i ? 'bg-white text-black' : 
                     answers[q.id] ? 'bg-white/10 text-white' : 'bg-white/5 text-slate-500'
                   }`}
                 >
@@ -205,7 +205,7 @@ export default function TakeQuizPage() {
               ))}
             </div>
             
-            <div className="glass-morphism p-6 mt-12">
+            <div className="glass p-6 mt-12">
                 <div className="flex items-center gap-3 text-slate-400 mb-2">
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                     <span className="text-[10px] font-bold uppercase tracking-widest">Efficiency Tip</span>

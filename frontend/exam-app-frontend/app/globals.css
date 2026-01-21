@@ -7,13 +7,14 @@
     --foreground: #ffffff;
     
     /* Semantic Colors */
-    --primary: #00aaff;
-    --primary-glow: rgba(0, 170, 255, 0.4);
-    --secondary: #aa00ff;
+    --primary: #ffffff; /* Stark white for primary actions in a black theme looks very premium */
+    --primary-foreground: #000000;
+    --secondary: #333333;
+    --secondary-foreground: #ffffff;
     
     /* Surfaces */
-    --glass-bg: rgba(255, 255, 255, 0.02);
-    --glass-border: rgba(255, 255, 255, 0.07);
+    --glass-bg: rgba(20, 20, 20, 0.6); /* Darker, more solid glass */
+    --glass-border: rgba(255, 255, 255, 0.1);
     --glass-highlight: rgba(255, 255, 255, 0.05);
 
     /* Typography */
@@ -27,6 +28,8 @@ body {
   color: var(--foreground);
   font-family: var(--font-body);
   letter-spacing: -0.01em;
+  /* Ensure grid is always visible behind content */
+  position: relative;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -35,85 +38,96 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.02em;
 }
 
-/* Glass Morphism Utility */
+/* Glass Morphism Utility - Clean & Flat */
 .glass {
   background: var(--glass-bg);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  /* No colored shadow, just a subtle depth */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
 }
 
 .glass-hover {
   @apply transition-all duration-300;
 }
 .glass-hover:hover {
-  background: var(--glass-highlight);
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(30, 30, 30, 0.8);
+  transform: translateY(-2px);
 }
 
-/* Text Gradients */
-.text-gradient-primary {
-  color: var(--primary);
-}
-
-/* Button Styles */
+/* Button Styles - Solid & Sharp */
 .btn-primary {
-  @apply relative inline-flex items-center justify-center px-8 py-3.5 font-bold text-white transition-all duration-300 rounded-xl overflow-hidden;
+  @apply relative inline-flex items-center justify-center px-8 py-3.5 font-bold transition-all duration-300 rounded-lg overflow-hidden;
   background-color: var(--primary);
-  box-shadow: 0 0 20px var(--primary-glow);
+  color: var(--primary-foreground);
+  border: 1px solid var(--primary);
 }
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 30px var(--primary-glow);
-  filter: brightness(1.2);
+  background-color: transparent;
+  color: var(--primary);
+  /* Use box-shadow for a clean "outline" effect highlight if needed, or just border swap */
 }
 
 .btn-secondary {
-  @apply relative inline-flex items-center justify-center px-6 py-3 font-semibold text-white transition-all duration-300 rounded-xl border-2 border-transparent bg-white/5;
+  @apply relative inline-flex items-center justify-center px-6 py-3 font-semibold text-white transition-all duration-300 rounded-lg border border-white/20 bg-transparent;
 }
 .btn-secondary:hover {
-  border-color: var(--primary);
-  color: var(--primary);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: white;
 }
 
 /* Input Field */
-.input-glow {
-  @apply w-full px-4 py-3 bg-transparent border-2 border-white/10 rounded-xl focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary-glow)] outline-none transition-all text-white placeholder-slate-500;
+.input-glow { /* Renamed concept: input-clean */
+  @apply w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-white focus:ring-0 outline-none transition-all text-white placeholder-gray-500;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
   background: var(--background);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--glass-border);
-  border-radius: 6px;
+  background: #333;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--glass-highlight);
+  background: #555;
 }
 
-/* Background Grid */
+/* Background Grid - Explicit & Sharp */
 .grid-background {
-  position: absolute;
-  inset: 0;
+  position: fixed; /* Fixed to cover updated viewport */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  
+  /* Create a grid pattern using radial gradients for dots or linear for lines. User asked for grid. */
+  background-size: 50px 50px;
   background-image:
-    linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
-  background-size: 4rem 4rem;
-  mask-image: radial-gradient(ellipse at center, white 0%, transparent 70%);
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    
+  /* Gentle fade mask to keep focus in center if desired, or remove for full grid. */
+  /* User said "stick to the black theme", usually uniform grid looks "techy". */
+  /* Let's keep it uniform but maybe fade out very slightly at edges to avoid harsh cutoffs? */
+  /* Actually, a slight vignette looks good on black. */
+  mask-image: radial-gradient(circle at center, black 60%, transparent 100%); 
 }
 
+/* Animations */
 @keyframes subtle-float {
   0% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+  50% { transform: translateY(-4px); } /* Reduced motion */
   100% { transform: translateY(0px); }
 }
 
 .animate-subtle-float {
-  animation: subtle-float 8s ease-in-out infinite;
+  animation: subtle-float 6s ease-in-out infinite;
 }

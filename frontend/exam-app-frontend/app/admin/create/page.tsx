@@ -80,7 +80,7 @@ export default function CreateQuizPage() {
       <div className="max-w-4xl mx-auto relative z-10">
         <header className="flex justify-between items-end mb-16">
           <div className="space-y-2 text-left">
-            <h1 className="text-4xl font-black text-white tracking-tight">Create <span className="text-gradient-primary">Assessment</span></h1>
+            <h1 className="text-4xl font-black text-white tracking-tight">Create Assessment</h1>
             <p className="text-slate-400">Define the parameters of your new examination.</p>
           </div>
           <Link href="/admin" className="text-sm font-semibold text-slate-500 hover:text-white transition-colors uppercase tracking-widest pb-1 border-b border-white/5 hover:border-white/20">
@@ -90,7 +90,7 @@ export default function CreateQuizPage() {
 
         <form onSubmit={handleSubmit} className="space-y-12">
           {/* Section: Metadata */}
-          <div className="glass-morphism p-10 space-y-8 text-left">
+          <div className="glass p-10 space-y-8 text-left">
             <h2 className="text-xs font-black text-slate-500 uppercase tracking-[0.2em]">General Information</h2>
             <div className="space-y-6">
                 <div className="space-y-2">
@@ -100,7 +100,7 @@ export default function CreateQuizPage() {
                         value={quiz.title}
                         onChange={handleQuizChange}
                         required
-                        className="input-premium text-xl font-bold"
+                        className="input-glow text-xl font-bold"
                         placeholder="e.g. Quantum Electrodynamics"
                     />
                 </div>
@@ -110,7 +110,7 @@ export default function CreateQuizPage() {
                         name="description"
                         value={quiz.description}
                         onChange={handleQuizChange}
-                        className="input-premium min-h-[120px] py-4"
+                        className="input-glow min-h-[120px] py-4"
                         placeholder="Describe the scope and objectives of this assessment..."
                     />
                 </div>
@@ -121,7 +121,7 @@ export default function CreateQuizPage() {
                         name="timeLimitMinutes"
                         value={quiz.timeLimitMinutes}
                         onChange={handleQuizChange}
-                        className="input-premium"
+                        className="input-glow"
                     />
                 </div>
             </div>
@@ -135,18 +135,18 @@ export default function CreateQuizPage() {
             </div>
 
             {quiz.questions.map((q, qIdx) => (
-              <div key={qIdx} className="glass-morphism p-10 space-y-8 relative overflow-hidden text-left">
+              <div key={qIdx} className="glass p-10 space-y-8 relative overflow-hidden text-left">
                 <div className="absolute top-0 right-0 p-4 font-black text-6xl text-white/5 pointer-events-none select-none">
                     {qIdx + 1}
                 </div>
                 
                 <div className="space-y-4">
-                  <label className="inline-block px-3 py-1 rounded bg-(--primary)/10 text-(--primary) text-[10px] font-black uppercase tracking-widest mb-2">Item #{qIdx + 1}</label>
+                  <label className="inline-block px-3 py-1 rounded bg-white/10 text-white text-[10px] font-black uppercase tracking-widest mb-2">Item #{qIdx + 1}</label>
                   <input
                     value={q.text}
                     onChange={(e) => handleQuestionChange(qIdx, e.target.value)}
                     required
-                    className="input-premium font-medium"
+                    className="input-glow font-medium"
                     placeholder="Provide the question prompt..."
                   />
                 </div>
@@ -177,7 +177,7 @@ export default function CreateQuizPage() {
             <button
               type="button"
               onClick={addQuestion}
-              className="w-full py-6 border-2 border-dashed border-white/10 rounded-3xl text-slate-500 hover:text-(--primary) hover:border-(--primary)/50 hover:bg-(--primary)/5 transition-all font-bold uppercase tracking-widest text-xs"
+              className="w-full py-6 border-2 border-dashed border-white/10 rounded-3xl text-slate-500 hover:text-white hover:border-white/50 hover:bg-white/5 transition-all font-bold uppercase tracking-widest text-xs"
             >
               + Append New Question
             </button>
@@ -187,7 +187,7 @@ export default function CreateQuizPage() {
             <button
               type="submit"
               disabled={submitting}
-              className="btn-premium w-full md:w-auto md:px-20 py-5 text-xl"
+              className="btn-primary w-full md:w-auto md:px-20 py-5 text-xl"
             >
               {submitting ? 'Serializing Data...' : 'Deploy Assessment'}
             </button>

@@ -19,7 +19,7 @@ export default function QuizListPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 border-4 border-[var(--primary)] border-t-transparent rounded-full animate-spin" />
+          <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin" />
           <p className="text-slate-400 font-medium animate-pulse">Loading assessments...</p>
         </div>
       </div>
@@ -31,7 +31,7 @@ export default function QuizListPage() {
       <div className="max-w-4xl mx-auto relative z-10">
         <header className="flex justify-between items-end mb-16">
           <div className="space-y-2">
-            <h1 className="text-4xl font-black text-white tracking-tight">Available <span className="text-gradient-primary">Quizzes</span></h1>
+            <h1 className="text-4xl font-black text-white tracking-tight">Available Quizzes</h1>
             <p className="text-slate-400">Select an assessment to begin your journey.</p>
           </div>
           <Link href="/" className="text-sm font-semibold text-slate-500 hover:text-white transition-colors uppercase tracking-widest pb-1 border-b border-white/5 hover:border-white/20">
@@ -41,16 +41,16 @@ export default function QuizListPage() {
 
         <div className="grid gap-6">
           {quizzes.length === 0 ? (
-            <div className="glass-morphism p-16 text-center">
+            <div className="glass p-16 text-center">
               <p className="text-slate-500 italic text-lg">No active quizzes found. Please check back later.</p>
             </div>
           ) : (
             quizzes.map((quiz) => (
-              <div key={quiz.id} className="glass-morphism p-8 flex flex-col md:flex-row justify-between items-start md:items-center group">
+              <div key={quiz.id} className="glass p-8 flex flex-col md:flex-row justify-between items-start md:items-center group">
                 <div className="space-y-3 mb-6 md:mb-0">
                   <div className="flex items-center gap-3">
-                    <span className="px-2 py-0.5 rounded bg-[color:rgb(56_189_248_/_0.10)] text-[var(--primary)] text-[10px] font-bold uppercase tracking-wider">Active</span>
-                    <h3 className="text-2xl font-bold text-white group-hover:text-[var(--primary)] transition-colors">{quiz.title}</h3>
+                    <span className="px-2 py-0.5 rounded bg-white/10 text-white text-[10px] font-bold uppercase tracking-wider">Active</span>
+                    <h3 className="text-2xl font-bold text-white group-hover:text-white/80 transition-colors">{quiz.title}</h3>
                   </div>
                   <p className="text-slate-400 leading-relaxed max-w-xl">{quiz.description}</p>
                   <div className="flex items-center gap-6 pt-2">
@@ -62,7 +62,7 @@ export default function QuizListPage() {
                     </div>
                   </div>
                 </div>
-                <Link href={`/quiz/${quiz.id}`} className="btn-premium whitespace-nowrap">
+                <Link href={`/quiz/${quiz.id}`} className="btn-primary whitespace-nowrap">
                   Start Quiz
                 </Link>
               </div>
