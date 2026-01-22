@@ -84,7 +84,7 @@ public class AIQuizController {
             }
             quiz.setQuestions(questions);
 
-            Quiz savedQuiz = quizService.saveQuiz(quiz);
+            Quiz savedQuiz = quizService.createQuiz(quiz);
             return ResponseEntity.ok(savedQuiz);
 
         } catch (IOException e) {
