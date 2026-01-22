@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { BookA, LogIn } from 'lucide-react';
+import { BookA, LogIn, Sparkles } from 'lucide-react';
 
 const Navbar = () => {
   return (
@@ -14,6 +14,11 @@ const Navbar = () => {
         <div className="hidden md:flex gap-8 items-center">
           <Link href="#features" className="text-slate-300 hover:text-white transition-colors">
             Features
+          </Link>
+          {/* Added Pricing Link */}
+          <Link href="/pricing" className="text-slate-300 hover:text-white transition-colors flex items-center gap-1">
+            <Sparkles className="w-4 h-4" />
+            Pricing
           </Link>
           <Link href="#how-it-works" className="text-slate-300 hover:text-white transition-colors">
             How It Works
